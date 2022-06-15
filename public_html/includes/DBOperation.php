@@ -3,6 +3,7 @@
 class DBOperation
 {
     private $con;
+   
     function __construct()
     {
         include_once "./database/db_connection.php";
@@ -17,9 +18,10 @@ class DBOperation
         $pre_stmt->bind_param("ssdsiiiii",$sku,$name,$price,$productType,$size,$weight,$height,$length,$width);
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
-            return "New product Added!";
+            $_SESSION['status']="New product Added!";
+           // return "New product Added!";
         } else {
-            return "error";
+           $_SESSION['status'] = "Error during Product saving";
         }
     }
     

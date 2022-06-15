@@ -1,7 +1,7 @@
 <?php
    $msg="";
   
-   
+   session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
  
@@ -123,15 +123,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="#home"></a>
         </div>
 
-        <?php ?>
-        <div class="success_msg">
+        <?php 
+        if(isset($_SESSION['status']))
+        {
+           ?>
 
-            <?php echo $msg;?>
-
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Hey!</strong> <?php echo $_SESSION['status']; ?>
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
         </div>
-
-        <?php ?>
-
+        <?php
+        
+        unset($_SESSION['status']);
+        }
+        ?>
     </header>
     <div class="container">
         <form id="product_form" class="w-50" method="POST"

@@ -29,7 +29,8 @@ require_once "./includes/fetchData.php";
             <h1 class="py-4 bg-dark text-light rounded"> <i class="fas fa-swatchbook "></i> Product List</h1>
             <div>
                 <div class="clearfix justify-content-center">
-
+                    <button type="button" class="btn btn-success btn-sm">Add</button>
+                    <button type="button" class="btn btn-danger btn-sm">Mass Delete</button>
                 </div>
             </div>
 
@@ -43,8 +44,9 @@ foreach ($rows as $row) {
             <div class='card'>
                 <div class='card-body'>
                   
-                 <input type='checkbox' checked='checked'>
+                 <input type='checkbox' >
   
+<div>" . $row["sku"] . "</div>
 <div>" . $row["name"] . "</div>
                    <div>" . $row["price"] . "$</div>
                    <div>Size:" . $row["size"] . "</div>
@@ -57,7 +59,7 @@ foreach ($rows as $row) {
             <div class='card'>
                 <div class='card-body'>
                   
-                 <input type='checkbox' checked='checked'>
+                 <input type='checkbox'>
   
 
                     
@@ -69,7 +71,7 @@ foreach ($rows as $row) {
             <div class='card'>
                 <div class='card-body'>
                   
-                 <input type='checkbox' checked='checked'>
+                 <input type='checkbox'>
   
 
                     
@@ -81,63 +83,7 @@ foreach ($rows as $row) {
             <div class='card'>
                 <div class='card-body'>
                   
-                 <input type='checkbox' checked='checked'>
-  
-
-                    
-                  
-                </div>
-            </div>
-       </div>
-
-</div>";
-}
-$rows = $fetch->getAllRecord("book");
-foreach ($rows as $row) {
-    echo "<div class='row'>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox' checked='checked'>
-  
-<div>" . $row["name"] . "</div>
-                   <div>" . $row["price"] . "$</div>
-                   <div>Size:" . $row["size"] . "</div>
-                    
-                  
-                </div>
-            </div>
-        </div>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox' checked='checked'>
-  
-
-                    
-                  
-                </div>
-            </div>
-        </div>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox' checked='checked'>
-  
-
-                    
-                  
-                </div>
-            </div>
-        </div>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox' checked='checked'>
+                 <input type='checkbox'>
   
           
                 </div>
@@ -146,17 +92,12 @@ foreach ($rows as $row) {
 
 </div>";
 }
+
 ?>
 
-            </tbody>
-            </table>
-        </div>
+
 
         </div>
-
-
-
-
     </main>
 
     <!-- JavaScript Bundle with Popper -->
