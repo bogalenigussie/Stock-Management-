@@ -62,11 +62,11 @@ if( isset($_POST['save']) )
              $obj =new DBOperation();
             $result= $obj->addProduct($sku,$name,$price,$productType,$size,$weight,$height,$length,$width);
              echo $result;
-             $msg="Saving succeeded!";
+             $msg="Product Saving succeeded!";
             }
        }
       else {
-        echo "Saving failed! " . $validationMessage;
+       $msg="Saving failed! " . $validationMessage;
       }
  }
 ?>

@@ -9,8 +9,22 @@ class DBOperation
         $db        = new Database();
         $this->con = $db->connect();
     }
-    //Add DVD
-    public function addDvd($sku, $name, $price,$productType, $size)
+   
+    //add product
+    public function addProduct($sku,$name,$price,$productType,$size,$weight,$length,$width,$height)
+    {
+        $pre_stmt = $this->con->prepare("INSERT INTO `test`(`sku`, `name`, `price`,`product_Type`, `size`,`weight`,`height`,`length`,`width`) VALUES (?,?,?,?,?,?,?,?,?)");
+        $pre_stmt->bind_param("ssdsiiiii",$sku,$name,$price,$productType,$size,$weight,$height,$length,$width);
+        ($result = $pre_stmt->execute()) or die($this->con->error);
+        if ($result) {
+            return "New product Added!";
+        } else {
+            return "error";
+        }
+    }
+    
+     //Add DVD
+    public function addDvd($sku, $name, $price,$productType,$size)
     {
         $pre_stmt = $this->con->prepare("INSERT INTO `units`(`sku`, `name`, `price`, `product_Type`) VALUES (?,?,?,?,?)");
         $pre_stmt->bind_param("ssdi", $sku, $name, $price, $size);
@@ -21,19 +35,6 @@ class DBOperation
             return "error";
         }
     }
-    //add product
-    public function addProduct($sku,$name,$price,$product_Type,$size,$weight,$length,$width,$height)
-    {
-        $pre_stmt = $this->con->prepare("INSERT INTO `test`(`sku`, `name`, `price`,`product_Type`, `size`,`weight`,`height`,`length`,`width`) VALUES (?,?,?,?,?,?,?,?,?)");
-        $pre_stmt->bind_param("ssdsiiiii",$sku,$name, $price,$productType,$size,$weight,$height,$length,$width);
-        ($result = $pre_stmt->execute()) or die($this->con->error);
-        if ($result) {
-            return "New product Added!";
-        } else {
-            return "error";
-        }
-    }
-    
     // add Furniture
     public function addFurniture($sku, $name, $price, $width, $length, $height)
     {

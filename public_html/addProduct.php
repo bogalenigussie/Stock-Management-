@@ -1,5 +1,6 @@
 <?php
    $msg="";
+  
    
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -23,16 +24,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $validationMessage = "";
    
          
-      echo "sku:".$sku;
-      echo "name:".$name;
-      echo "price:". $price;
-      echo "productType:".$productType;
-      echo "size:". $sku;
-      echo "weight:".$name;
-      echo "width:" .$price;
-      echo "length:".$productType;
-      echo "size:" .$sku;
-      echo "height:".$name;
+    //   echo "sku:".$sku;
+    //   echo "name:".$name;
+    //   echo "price:". $price;
+    //   echo "productType:".$productType;
+    //   echo "size:". $sku;
+    //   echo "weight:".$name;
+    //   echo "width:" .$price;
+    //   echo "length:".$productType;
+    //   echo "size:" .$sku;
+    //   echo "height:".$name;
       
       
         //all products should have the required fields sku, name, price set
@@ -68,13 +69,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if($valid) {
              include_once "./includes/DBOperation.php";
              $obj =new DBOperation();
+            
             $result= $obj->addProduct($sku,$name,$price,$productType,$size,$weight,$length,$width,$height);
-             echo $result;
-             $msg="Saving succeeded!";
+             //echo $result;
+             $msg=$result;
             }
        }
       else {
-        echo "Saving failed! " . $validationMessage;
+        $msg="Saving failed! " . $validationMessage;
+       
       }
  }
 ?>
@@ -125,9 +128,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             <?php echo $msg;?>
 
-            <button type="button" class="close_btn" style="float: right;">
-                <span aria-hidden="true"> &times;</span>
-            </button>
         </div>
 
         <?php ?>
