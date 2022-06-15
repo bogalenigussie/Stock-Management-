@@ -5,7 +5,7 @@ function myNewFunction() {
   if(sel_Product==="DVD") {
     document.querySelector(
       ".sel_Product"
-    ).innerHTML=` <div class="form-group row">
+    ).innerHTML= ` <div class="form-group row">
                     <label for="inputsize" class="col-sm-2 col-form-label">SIZE(MB)</label>
                     <div class="col-sm-6">
                         <input type="number" id="size" name="size" autocomplete="off" placeholder='#Size'
@@ -16,7 +16,7 @@ function myNewFunction() {
   } else if(sel_Product==="Furniture") {
     document.querySelector(
       ".sel_Product"
-    ).innerHTML=`<div class="form-group row">
+    ).innerHTML= `<div class="form-group row">
                       <label for="inputweight" class="col-sm-2 col-form-label">Height(CM):</label>
                         <div class="col-sm-6">
                                 <input type="number"  autocomplete="off"  placeholder="#height" id="height" name="height"
@@ -44,7 +44,7 @@ function myNewFunction() {
   } else {
     document.querySelector(
       ".sel_Product"
-    ).innerHTML=` <div class="form-group row">
+    ).innerHTML= ` <div class="form-group row">
                     <label for="inputweight" class="col-sm-2 col-form-label">WEIGHT(KG)</label>
                     <div class="col-sm-6">
                         <input type="number" id="weight" name="weight" autocomplete="off" placeholder='#weight'

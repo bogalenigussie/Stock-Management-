@@ -1,6 +1,5 @@
 <?php
-include_once("./database/constants.php");
-?>
+include_once "./database/constants.php"; ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -38,19 +37,15 @@ include_once("./database/constants.php");
                 <a href="#home"></a>
         </div>
 
-        <?php
-        if(isset($_GET["msg"]) AND !empty($_GET["msg"])){
-            ?>
+        <?php if (isset($_GET["msg"]) and !empty($_GET["msg"])) { ?>
         <div class="success_msg">
-            <?php echo $_GET["msg"];?>
+            <?php echo $_GET["msg"]; ?>
             <button type="button" class="close_btn" style="float: right;">
                 <span aria-hidden="true"> &times;</span>
             </button>
         </div>
 
-        <?php
-        }
-        ?>
+        <?php } ?>
 
     </header>
     <div class="container">
