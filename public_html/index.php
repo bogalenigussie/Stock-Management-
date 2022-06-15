@@ -35,27 +35,21 @@ require_once "./includes/fetchData.php";
 
 
             <?php
-            $fetch = new fetchOperation();
-            $rows = $fetch->getAllRecord("dvd");
-            foreach ($rows as $row) {
-                echo "<div class='row'>
+$fetch = new fetchOperation();
+$rows  = $fetch->getAllRecord("dvd");
+foreach ($rows as $row) {
+    echo "<div class='row'>
         <div class='col-sm-2'>
             <div class='card'>
                 <div class='card-body'>
                   
                  <input type='checkbox' checked='checked'>
   
-<div>" .
-                    $row["name"] .
-                    "</div>
-                   <div>" .
-                    $row["price"] .
-                    "$</div>
-                   <div>Size:" .
-                    $row["size"] .
-                    "</div>
+<div>" . $row["name"] . "</div>
+                   <div>" . $row["price"] . "$</div>
+                   <div>Size:" . $row["size"] . "</div>
                     
-                   
+                  
                 </div>
             </div>
         </div>
@@ -67,7 +61,7 @@ require_once "./includes/fetchData.php";
   
 
                     
-                   
+                  
                 </div>
             </div>
         </div>
@@ -79,7 +73,7 @@ require_once "./includes/fetchData.php";
   
 
                     
-                   
+                  
                 </div>
             </div>
         </div>
@@ -91,33 +85,27 @@ require_once "./includes/fetchData.php";
   
 
                     
-                   
+                  
                 </div>
             </div>
        </div>
 
 </div>";
-            }
-            $rows = $fetch->getAllRecord("book");
-            foreach ($rows as $row) {
-                echo "<div class='row'>
+}
+$rows = $fetch->getAllRecord("book");
+foreach ($rows as $row) {
+    echo "<div class='row'>
         <div class='col-sm-2'>
             <div class='card'>
                 <div class='card-body'>
                   
                  <input type='checkbox' checked='checked'>
   
-<div>" .
-                    $row["name"] .
-                    "</div>
-                   <div>" .
-                    $row["price"] .
-                    "$</div>
-                   <div>Size:" .
-                    $row["size"] .
-                    "</div>
+<div>" . $row["name"] . "</div>
+                   <div>" . $row["price"] . "$</div>
+                   <div>Size:" . $row["size"] . "</div>
                     
-                   
+                  
                 </div>
             </div>
         </div>
@@ -129,7 +117,7 @@ require_once "./includes/fetchData.php";
   
 
                     
-                   
+                  
                 </div>
             </div>
         </div>
@@ -141,7 +129,7 @@ require_once "./includes/fetchData.php";
   
 
                     
-                   
+                  
                 </div>
             </div>
         </div>
@@ -157,8 +145,8 @@ require_once "./includes/fetchData.php";
        </div>
 
 </div>";
-            }
-            ?>
+}
+?>
 
             </tbody>
             </table>

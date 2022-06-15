@@ -6,15 +6,13 @@ class DBOperation
     function __construct()
     {
         include_once "../database/db_connection.php";
-        $db = new Database();
+        $db        = new Database();
         $this->con = $db->connect();
     }
     //Add DVD
-    public function addDvd($sku, $name, $price, $size)
+    public function addDvd($sku, $name, $price, $product_Type, $size)
     {
-        $pre_stmt = $this->con->prepare(
-            "INSERT INTO `dvd`(`sku`, `name`, `price`, `size`) VALUES (?,?,?,?)"
-        );
+        $pre_stmt = $this->con->prepare("INSERT INTO `units`(`sku`, `name`, `price`, `product_Type`) VALUES (?,?,?,?,?)");
         $pre_stmt->bind_param("ssdi", $sku, $name, $price, $size);
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
@@ -26,9 +24,7 @@ class DBOperation
     //add product
     public function addProduct($sku, $name, $price, $size)
     {
-        $pre_stmt = $this->con->prepare(
-            "INSERT INTO `dvd`(`sku`, `name`, `price`, `size`) VALUES (?,?,?,?)"
-        );
+        $pre_stmt = $this->con->prepare("INSERT INTO `dvd`(`sku`, `name`, `price`, `size`) VALUES (?,?,?,?)");
         $pre_stmt->bind_param("ssdi", $sku, $name, $price, $size);
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
@@ -37,23 +33,13 @@ class DBOperation
             return "error";
         }
     }
-
+    
     // add Furniture
     public function addFurniture($sku, $name, $price, $width, $length, $height)
     {
-        $pre_stmt = $this->con->prepare(
-            "INSERT INTO `furniture`(`sku`, `name`, `price`, `width`, `length`, `height`) VALUES (?,?,?,?,?,?)"
-        );
-
-        $pre_stmt->bind_param(
-            "ssdiii",
-            $sku,
-            $name,
-            $price,
-            $width,
-            $length,
-            $height
-        );
+        $pre_stmt = $this->con->prepare("INSERT INTO `furniture`(`sku`, `name`, `price`, `width`, `length`, `height`) VALUES (?,?,?,?,?,?)");
+        
+        $pre_stmt->bind_param("ssdiii", $sku, $name, $price, $width, $length, $height);
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
             return "New_Furniture_Added!";
@@ -64,9 +50,7 @@ class DBOperation
     //add Book
     public function addBook($sku, $name, $price, $weight)
     {
-        $pre_stmt = $this->con->prepare(
-            "INSERT INTO `book`(`sku`, `name`, `price`, `weight`) VALUES (?,?,?,?)"
-        );
+        $pre_stmt = $this->con->prepare("INSERT INTO `book`(`sku`, `name`, `price`, `weight`) VALUES (?,?,?,?)");
         $pre_stmt->bind_param("ssdi", $sku, $name, $price, $weight);
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
