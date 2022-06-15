@@ -12,7 +12,7 @@ class fetchOperation
 
     public function getAllRecord()
     {
-        $pre_stmt = $this->con->prepare("SELECT sku,price,name,size FROM test ");
+        $pre_stmt = $this->con->prepare("SELECT id,sku,price,name,size,weight,height,width,length FROM test ORDER BY product_Type");
 
         $pre_stmt->execute() or die($this->con->error);
         $result = $pre_stmt->get_result();

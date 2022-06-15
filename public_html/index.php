@@ -37,62 +37,32 @@ require_once "./includes/fetchData.php";
 
             <?php
 $fetch = new fetchOperation();
-$rows  = $fetch->getAllRecord("dvd");
+$rows  = $fetch->getAllRecord();
+echo "<div class='row'>";
 foreach ($rows as $row) {
-    echo "<div class='row'>
-        <div class='col-sm-2'>
+    
+ echo "   
+        <div class='col-sm-3'>
             <div class='card'>
                 <div class='card-body'>
                   
-                 <input type='checkbox' >
+                 <input value='".$row["id"]."' type='checkbox' >
   
 <div>" . $row["sku"] . "</div>
 <div>" . $row["name"] . "</div>
-                   <div>" . $row["price"] . "$</div>
-                   <div>Size:" . $row["size"] . "</div>
-                    
-                  
-                </div>
-            </div>
-        </div>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox'>
-  
 
-                    
-                  
-                </div>
-            </div>
-        </div>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox'>
-  
+                  <div>" . $row["price"] . "$</div>";
 
-                    
-                  
+                if(isset($row["size"])) {echo " <div>Size:" . $row["size"] . "</div>"; }
+                if(isset($row["weight"])) {echo " <div>weight:" . $row["weight"] . "</div>"; }
+                if(isset($row["height"])) {echo " <div>Dimension:" . $row["height"] ."x" . $row["length"] ."x" . $row["width"] ."</div>"; }    
+               echo " 
                 </div>
             </div>
-        </div>
-        <div class='col-sm-2'>
-            <div class='card'>
-                <div class='card-body'>
-                  
-                 <input type='checkbox'>
-  
-          
-                </div>
-            </div>
-       </div>
-
-</div>";
+        </div>";
+       
 }
-
+echo "</div>";
 ?>
 
 
