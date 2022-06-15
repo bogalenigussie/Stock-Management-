@@ -5,12 +5,12 @@ class DBOperation
     private $con;
     function __construct()
     {
-        include_once "../database/db_connection.php";
+        include_once "./database/db_connection.php";
         $db        = new Database();
         $this->con = $db->connect();
     }
     //Add DVD
-    public function addDvd($sku, $name, $price, $product_Type, $size)
+    public function addDvd($sku, $name, $price,$productType, $size)
     {
         $pre_stmt = $this->con->prepare("INSERT INTO `units`(`sku`, `name`, `price`, `product_Type`) VALUES (?,?,?,?,?)");
         $pre_stmt->bind_param("ssdi", $sku, $name, $price, $size);
@@ -22,13 +22,13 @@ class DBOperation
         }
     }
     //add product
-    public function addProduct($sku, $name, $price, $size)
+    public function addProduct($sku,$name,$price,$product_Type,$size,$weight,$length,$width,$height)
     {
-        $pre_stmt = $this->con->prepare("INSERT INTO `dvd`(`sku`, `name`, `price`, `size`) VALUES (?,?,?,?)");
-        $pre_stmt->bind_param("ssdi", $sku, $name, $price, $size);
+        $pre_stmt = $this->con->prepare("INSERT INTO `test`(`sku`, `name`, `price`,`product_Type`, `size`,`weight`,`height`,`length`,`width`) VALUES (?,?,?,?,?,?,?,?,?)");
+        $pre_stmt->bind_param("ssdsiiiii",$sku,$name, $price,$productType,$size,$weight,$height,$length,$width);
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
-            return "New_DVD_Added!";
+            return "New product Added!";
         } else {
             return "error";
         }

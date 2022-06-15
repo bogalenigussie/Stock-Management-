@@ -1,5 +1,88 @@
 <?php
-include_once "./database/constants.php"; ?>
+   $msg="";
+   
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+ 
+
+  echo $_POST["save"];
+      //read all the posted values and store them in variables
+      //we will next validate if the variables are set (have value)      
+      $sku = $_POST["sku"];
+      $name = $_POST["name"];
+      $price = $_POST["price"];
+      $productType=$_POST["product_Type"];
+      $size = isset($_POST["size"])?$_POST["size"]:NULL;     
+      $weight =isset($_POST["weight"])?$_POST["weight"]:NULL;
+      $width = isset($_POST["width"])?$_POST["width"]:NULL;
+      $length =isset($_POST["length"])?$_POST["length"]:NULL;
+      $height =isset($_POST["height"])?$_POST["height"]:NULL;
+      
+      
+      $valid = true;
+      $validationMessage = "";
+   
+         
+      echo "sku:".$sku;
+      echo "name:".$name;
+      echo "price:". $price;
+      echo "productType:".$productType;
+      echo "size:". $sku;
+      echo "weight:".$name;
+      echo "width:" .$price;
+      echo "length:".$productType;
+      echo "size:" .$sku;
+      echo "height:".$name;
+      
+      
+        //all products should have the required fields sku, name, price set
+      if(!isset($sku) || !isset($name) || !isset($price))
+      {
+        $validationMessage ="Error: A product should have sku, name and price.";
+        $valid = false;
+      }
+      
+      if($valid) {
+      //dvd product with no size is invalid
+        if($productType =="DVD") {
+          if(!isset($size)) {
+              $valid = false;
+              $validationMessage =" Error: A DVD should have size specified.";
+            }
+        }//book with no weight is invalid
+        else if($productType =="Book") {
+           if(!isset($weight)) {
+             $validationMessage ="Error: A book should have weight specified.";
+             $valid = false;
+           }
+        }
+        else if ($productType =="Furniture") {
+          //a furniture with either of the length , width , height not specified is no valid
+          if(!isset($length) || !isset($width) || !isset($height)) {
+            $validationMessage ="A furniture should have length, width and height specified.";
+             $valid = false;
+           }
+        }
+      
+        //if the product is valid and we will save it
+        if($valid) {
+             include_once "./includes/DBOperation.php";
+             $obj =new DBOperation();
+            $result= $obj->addProduct($sku,$name,$price,$productType,$size,$weight,$length,$width,$height);
+             echo $result;
+             $msg="Saving succeeded!";
+            }
+       }
+      else {
+        echo "Saving failed! " . $validationMessage;
+      }
+ }
+?>
+
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -37,19 +120,22 @@ include_once "./database/constants.php"; ?>
                 <a href="#home"></a>
         </div>
 
-        <?php if (isset($_GET["msg"]) and !empty($_GET["msg"])) { ?>
+        <?php ?>
         <div class="success_msg">
-            <?php echo $_GET["msg"]; ?>
+
+            <?php echo $msg;?>
+
             <button type="button" class="close_btn" style="float: right;">
                 <span aria-hidden="true"> &times;</span>
             </button>
         </div>
 
-        <?php } ?>
+        <?php ?>
 
     </header>
     <div class="container">
-        <form id="product_form" class="w-50" onsubmit="return false">
+        <form id="product_form" class="w-50" method="POST"
+            action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
             <div class="form-group row">
                 <div class="form-group row">
                     <label for="inputPassword" class="col-sm-2 col-form-label">SKU</label>

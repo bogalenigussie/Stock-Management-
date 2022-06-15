@@ -1,53 +1,72 @@
 <?php
-include_once "../database/constants.php";
-include_once "DBOperation.php";
 
 
-//Add DVD
-if (isset($_POST["sku"]) and isset($_POST["name"]) and isset($_POST["price"]) and isset($_POST["size"])) {
-    $obj    = new DBOperation();
-    $result = $obj->addDvd($_POST["sku"], $_POST["name"], $_POST["price"], $_POST["size"]);
-    
-    echo $result;
-    exit();
-}
-//Add Book
-if (isset($_POST["sku"]) and isset($_POST["name"]) and isset($_POST["price"]) and isset($_POST["weight"])) {
-    $obj    = new DBOperation();
-    $result = $obj->addBook($_POST["sku"], $_POST["name"], $_POST["price"], $_POST["weight"]);
-    
-    echo $result;
-    exit();
-}
-//Add Furniture
-if (isset($_POST["sku"]) and isset($_POST["name"]) and isset($_POST["price"]) and isset($_POST["height"]) and isset($_POST["width"]) and isset($_POST["length"])) {
-    $obj    = new DBOperation();
-    $result = $obj->addFurniture($_POST["sku"], $_POST["name"], $_POST["price"], $_POST["width"], $_POST["length"], $_POST["height"]);
-    
-    echo $result;
-    exit();
-}
-// //To get Category
+if( isset($_POST['save']) )
+{
+  echo $_POST["save"];
+      //read all the posted values and store them in variables
+      //we will next validate if the variables are set (have value)      
+      $sku = $_POST["sku"];
+      $name = $_POST["name"];
+      $price = $_POST["price"];
+      $size = isset($_POST["size"])?$_POST["size"]:NULL;     
+      $weight =isset($_POST["weight"])?$_POST["weight"]:NULL;
+      $width = isset($_POST["width"])?$_POST["width"]:NULL;
+      $length =isset($_POST["length"])?$_POST["length"]:NULL;
+      $height =isset($_POST["height"])?$_POST["height"]:NULL;
+      $productType = $_POST["product_Type"];
+      
+      $valid = true;
+      $validationMessage = "";
+      $msg="";
 
-// if (isset($_POST["getCategory"])) {
-//     $obj = new DBOperation();
-//     $rows = $obj->getAllRecord("categories");
-//     foreach ($rows as $row) {
-//         echo "<option value='" .
-//             $row["cid"] .
-//             "'>" .
-//             $row["category_name"] .
-//             "</option>";
-//     }
-//     exit();
-// }
-
-//Add Category
-if (isset($_POST["category_name"]) and isset($_POST["parent_cat"])) {
-    $obj    = new DBOperation();
-    $result = $obj->addCategory($_POST["parent_cat"], $_POST["category_name"]);
-    
-    echo $result;
-    exit();
-}
+      echo "Abebe";
+      
+      echo $sku;
+      echo $name;
+      echo $price;
+      echo $productType;
+      
+      
+        //all products should have the required fields sku, name, price set
+      if(!isset($sku) || !isset($name) || !isset($price))
+      {
+        $validationMessage ="Error: A product should have sku, name and price.";
+        $valid = false;
+      }
+      
+      if($valid) {
+      //dvd product with no size is invalid
+        if($productType =="DVD") {
+          if(!isset($size)) {
+              $valid = false;
+              $validationMessage =" Error: A DVD should have size specified.";
+            }
+        }//book with no weight is invalid
+        else if($productType =="Book") {
+           if(!isset($weight)) {
+             $validationMessage ="Error: A book should have weight specified.";
+             $valid = false;
+           }
+        }
+        else if ($productType =="Furniture") {
+          //a furniture with either of the length , width , height not specified is no valid
+          if(!isset($length) || !isset($width) || !isset($height)) {
+            $validationMessage ="A furniture should have length, width and height specified.";
+             $valid = false;
+           }
+        }
+      
+        //if the product is valid and we will save it
+        if($valid) {
+             $obj =new DBOperation();
+            $result= $obj->addProduct($sku,$name,$price,$productType,$size,$weight,$height,$length,$width);
+             echo $result;
+             $msg="Saving succeeded!";
+            }
+       }
+      else {
+        echo "Saving failed! " . $validationMessage;
+      }
+ }
 ?>
