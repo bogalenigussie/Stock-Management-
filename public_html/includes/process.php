@@ -2,29 +2,7 @@
 include_once "../database/constants.php";
 include_once "DBOperation.php";
 
-//To get Category
 
-if (isset($_POST["getCategory"])) {
-    $obj = new DBOperation();
-    $rows = $obj->getAllRecord("categories");
-    foreach ($rows as $row) {
-        echo "<option value='" .
-            $row["cid"] .
-            "'>" .
-            $row["category_name"] .
-            "</option>";
-    }
-    exit();
-}
-
-//Add Category
-if (isset($_POST["category_name"]) and isset($_POST["parent_cat"])) {
-    $obj = new DBOperation();
-    $result = $obj->addCategory($_POST["parent_cat"], $_POST["category_name"]);
-
-    echo $result;
-    exit();
-}
 //Add DVD
 if (
     isset($_POST["sku"]) and
@@ -79,6 +57,29 @@ if (
         $_POST["length"],
         $_POST["height"]
     );
+
+    echo $result;
+    exit();
+}
+// //To get Category
+
+// if (isset($_POST["getCategory"])) {
+//     $obj = new DBOperation();
+//     $rows = $obj->getAllRecord("categories");
+//     foreach ($rows as $row) {
+//         echo "<option value='" .
+//             $row["cid"] .
+//             "'>" .
+//             $row["category_name"] .
+//             "</option>";
+//     }
+//     exit();
+// }
+
+//Add Category
+if (isset($_POST["category_name"]) and isset($_POST["parent_cat"])) {
+    $obj = new DBOperation();
+    $result = $obj->addCategory($_POST["parent_cat"], $_POST["category_name"]);
 
     echo $result;
     exit();
