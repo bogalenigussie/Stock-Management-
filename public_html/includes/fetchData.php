@@ -27,8 +27,8 @@ class fetchOperation
         else {
               echo  
              " <div id=\"no-Product-To-Display\"class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
-            <strong>OOPS...NO Product Data To Display!</strong>
-            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+            <strong>OOPS...NO Product To Display!</strong>
+             <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
                 </button>
         </div>";
               error_reporting(E_ERROR | E_PARSE);

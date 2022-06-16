@@ -77,11 +77,20 @@ float: center;
 margin-top: 1.5rem;
 margin-left: 5rem;
 }
+
+/*Product list page format*/
 #no-Product-To-Display{
-  margin-left:2rem;
+   margin-left:2rem;
+   width:22%;
+   background: no-repeat;
+   background-position: center;
+   height:23rem;
+   background-image: url("../images/no-product-information.png")
+}
+#delete-success-msg{
+ margin-left:2rem;
    width:96%;
 }
-/*Product list page format*/
 .delete-checkbox{
 float: left;
 margin-bottom: 7rem;
