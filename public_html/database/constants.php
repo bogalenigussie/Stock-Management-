@@ -3,7 +3,7 @@
 define("HOST","localhost");
 define("USER","root");
 define("PASS","");
-define("DB","products");
-define("DOMAIN","http://localhost/Product Sell/public_html")
+define("DB","stocks");
+define("DOMAIN","http://localhost/stock-management/stock-management-/public_html")
 
 ?>

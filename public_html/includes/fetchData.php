@@ -5,15 +5,14 @@ class fetchOperation
     private $con;
     function __construct()
     {
-        include_once "./database/db_connection.php";
-        $db = new Database();
+        include_once "./database/dbConnection.php";
+        $db        = new Database();
         $this->con = $db->connect();
     }
-
+    
     public function getAllRecord()
     {
-        $pre_stmt = $this->con->prepare("SELECT id,sku,price,name,size,weight,height,width,length FROM test ORDER BY product_Type");
-
+        $pre_stmt = $this->con->prepare("SELECT id,sku,price,name,size,weight,productType,height,width,length FROM products ORDER BY productType");
         $pre_stmt->execute() or die($this->con->error);
         $result = $pre_stmt->get_result();
         $rows = [];
