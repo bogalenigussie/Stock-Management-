@@ -77,7 +77,10 @@ float: center;
 margin-top: 1.5rem;
 margin-left: 5rem;
 }
-
+#no-Product-To-Display{
+  margin-left:2rem;
+   width:96%;
+}
 /*Product list page format*/
 .delete-checkbox{
 float: left;

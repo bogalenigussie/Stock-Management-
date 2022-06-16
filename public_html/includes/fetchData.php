@@ -16,17 +16,32 @@ class fetchOperation
         $pre_stmt->execute() or die($this->con->error);
         $result = $pre_stmt->get_result();
         $rows = [];
-        if ($result->num_rows > 0) {
-            while ($row = $result->fetch_assoc()) {
+        if ($result->num_rows > 0)
+         {
+            while ($row = $result->fetch_assoc())
+             {
                 $rows[] = $row;
-            }
+             }
             return $rows;
-        } else {
-            return "NO_DATA";
-        }
+        } 
+        else {
+              echo  
+             " <div id=\"no-Product-To-Display\"class=\"alert alert-danger alert-dismissible fade show\" role=\"alert\">
+            <strong>OOPS...NO Product Data To Display!</strong>
+            <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-label=\"Close\">
+                </button>
+        </div>";
+              error_reporting(E_ERROR | E_PARSE);
+              
+            }
     }
 }
-
 $fetch = new fetchOperation();
+
+
+
+
+
+
 
 ?>

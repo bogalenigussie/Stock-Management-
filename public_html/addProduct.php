@@ -58,6 +58,7 @@ $obj =new DbOperation();
 $result= $obj->addProduct($sku,$name,$price,$productType,$size,$weight,$length,$width,$height);
 //echo $result;
 $msg=$result;
+
 }
 }
 else {
@@ -99,7 +100,7 @@ $msg="Saving failed! " . $validationMessage;
         <div class="header-1">
             <h1> <i class="fas fa-swatchbook "></i> Product add</h1>
             <button type="button" name="cancel" class="btn btn-danger"
-                onClick="window.location.reload();">Cancel</button>
+                onclick="location.href = 'index.php';">Cancel</button>
         </div>
         <div class="header-2"></div>
 
@@ -109,7 +110,7 @@ $msg="Saving failed! " . $validationMessage;
            ?>
 
         <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong>Hey!</strong> <?php echo $_SESSION['status']; ?>
+            <strong></strong>Hey! <?php echo $_SESSION['status']; ?>
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>

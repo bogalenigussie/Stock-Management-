@@ -1,4 +1,8 @@
 <?php
+session_start();
+?>
+
+<?php
 require_once "./database/dbConnection.php";
 require_once "./includes/fetchData.php";
 ?>
@@ -28,13 +32,34 @@ require_once "./includes/fetchData.php";
 
     <div class="heading productlist">
         <h1 class="py-4 bg-dark text-light rounded"> <i class="fas fa-swatchbook "></i> Product List</h1>
-        <div class="btn-productlist">
-            <button type="button" class="btn btn-warning float-right ml-2">ADD</button>
-            <button type="button" class="btn btn-danger float-right">MASS DELETE</button>
-        </div>
+        <form action="./includes/deleteOperation.php" method="POST">
+            <div class="btn-productlist">
+                <button type="button" onclick="location.href = 'addProduct.php';" id="addButton"
+                    class="btn btn-warning float-right ml-2">ADD</button>
+                <button type="submit" name="mass-delete-products-btn" class="btn btn-danger float-right">MASS
+                    DELETE</button>
+            </div>
+    </div>
+    <!-- session div starts here  -->
+    <?php 
+        if(isset($_SESSION['status']))
+        {
+           ?>
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong></strong> <?php echo $_SESSION['status']; ?>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <?php
-$fetch = new fetchOperation();
+        
+        unset($_SESSION['status']);
+        }
+        ?>
+
+    <!-- session div ends here  -->
+    <?php
+
 $rows  = $fetch->getAllRecord();
 echo "<div class='row  text-center'>";
 foreach ($rows as $row) 
@@ -44,7 +69,7 @@ foreach ($rows as $row)
         <div class='col-sm-3'>
             <div class='card'>
                 <div class='card-body'>
-                    <input class='delete-checkbox' value='" . $row["id"] . "' type='checkbox' >
+                    <input class='delete-checkbox' value='" . $row["id"] . "' type='checkbox' name='product-delete-id[]' >
                             <div>" . $row["sku"] . "</div>
                             <div>" . $row["name"] . "</div>
                             <div>" . $row["price"] . "$</div>";
@@ -65,7 +90,7 @@ foreach ($rows as $row)
 echo "</div>";
 ?>
 
-
+    </form>
 </body>
 
 </html>

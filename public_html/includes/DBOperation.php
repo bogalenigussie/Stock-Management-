@@ -19,14 +19,14 @@ class DbOperation
         ($result = $pre_stmt->execute()) or die($this->con->error);
         if ($result) {
             $_SESSION['status']="New product Successfully Added!";
-           // return "New product Added!";
+                
+      
         } else {
            $_SESSION['status'] = "Error during Product saving";
         }
     }
     
-     
-}
+}    
 
 $opr = new DbOperation();
 
