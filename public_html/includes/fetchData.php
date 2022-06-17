@@ -1,5 +1,6 @@
 <?php
 
+//fetching products from our database 
 class fetchOperation
 {
     private $con;

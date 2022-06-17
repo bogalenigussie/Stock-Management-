@@ -6,8 +6,6 @@ session_start();
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-echo $_POST["save"];
-
 $sku = $_POST["sku"];
 $name = $_POST["name"];
 $price = $_POST["price"];
@@ -171,7 +169,6 @@ $msg="Saving failed! " . $validationMessage;
                 </div>
         </form>
     </div>
-
 
     <script src="https://unpkg.com/swiper@7/swiper-bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
