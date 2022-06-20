@@ -1,68 +1,33 @@
 <?php
-session_start();
-?>
+session_start(); ?>
 <?php
-   $msg="";
-
+$msg = "";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-
-$sku = $_POST["sku"];
-$name = $_POST["name"];
-$price = $_POST["price"];
-$productType=$_POST["productType"];
-$size = isset($_POST["size"])?$_POST["size"]:NULL;
-$weight =isset($_POST["weight"])?$_POST["weight"]:NULL;
-$width = isset($_POST["width"])?$_POST["width"]:NULL;
-$length =isset($_POST["length"])?$_POST["length"]:NULL;
-$height =isset($_POST["height"])?$_POST["height"]:NULL;
-
-$valid = true;
-$validationMessage = "";
-
-//all products should have the required fields sku, name, price set
-if(!isset($sku) || !isset($name) || !isset($price))
-{
-$validationMessage ="Error: A product should have sku, name and price.";
-$valid = false;
-}
-
-if($valid) {
-//dvd product with no size is invalid
-if($productType =="DVD") {
-if(!isset($size)) {
-$valid = false;
-$validationMessage =" Error: A DVD should have size specified.";
-}
-}//book with no weight is invalid
-else if($productType =="Book") {
-if(!isset($weight)) {
-$validationMessage ="Error: A book should have weight specified.";
-$valid = false;
-}
-}
-else if ($productType =="Furniture") {
-//a furniture with either of the length , width , height not specified is no valid
-if(!isset($length) || !isset($width) || !isset($height)) {
-$validationMessage ="A furniture should have length, width and height specified.";
-$valid = false;
-}
-}
-
-//if the product is valid and we will save it
-if($valid) {
-include_once "./includes/dbOperation.php";
-$obj =new DbOperation();
-
-$result= $obj->addProduct($sku,$name,$price,$productType,$size,$weight,$length,$width,$height);
-//echo $result;
-$msg=$result;
-
-}
-}
-else {
-$msg="Saving failed! " . $validationMessage;
-
-}
+    $sku = $_POST["sku"];
+    $name = $_POST["name"];
+    $price = $_POST["price"];
+    $productType = $_POST["productType"];
+    $size = isset($_POST["size"]) ? $_POST["size"] : null;
+    $weight = isset($_POST["weight"]) ? $_POST["weight"] : null;
+    $width = isset($_POST["width"]) ? $_POST["width"] : null;
+    $length = isset($_POST["length"]) ? $_POST["length"] : null;
+    $height = isset($_POST["height"]) ? $_POST["height"] : null;
+    $valid = true; //if the product is valid and we will save it
+    if ($valid) {
+        include_once "./includes/dbOperation.php";
+        $obj = new DbOperation();
+        $result = $obj->addProduct(
+            $sku,
+            $name,
+            $price,
+            $productType,
+            $size,
+            $weight,
+            $length,
+            $width,
+            $height
+        );
+    }
 }
 ?>
 
@@ -83,7 +48,7 @@ $msg="Saving failed! " . $validationMessage;
     <!-- custom css file link  -->
     <link rel="stylesheet" href="CSS/style.css">
     <!-- custom css bootstrap link  -->
-
+    <link rel="home icon" type="image/jpg" href="./images/product-icon.png" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
@@ -102,29 +67,14 @@ $msg="Saving failed! " . $validationMessage;
         </div>
         <div class="header-2"></div>
 
-        <?php 
-        if(isset($_SESSION['status']))
-        {
-           ?>
 
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            <strong></strong>Hey! <?php echo $_SESSION['status']; ?>
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-        </div>
-        <?php
-        
-        unset($_SESSION['status']);
-        }
-        ?>
     </header>
     <!-- header section ends here  -->
 
     <!-- form  section starts here -->
     <div class="container">
         <form id="product_form" class="w-50" method="POST"
-            action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>">
+            action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
             <div class="form-group row">
                 <div class="form-group row">
                     <label for="inputPassword" class="col-sm-2 col-form-label">SKU</label>
@@ -137,8 +87,9 @@ $msg="Saving failed! " . $validationMessage;
                     <label for="inputPassword" class="col-sm-2 col-form-label">Name</label>
                     <div class="col-sm-8">
                         <input type="text" id="name" name="name" autocomplete="off" placeholder='#name'
-                            class="form-control form-control-lg" required>
+                            class="form-control form-control-lg">
                     </div>
+
                 </div>
                 <div class="form-group row">
                     <label for="price" class="col-sm-2 col-form-label">Price($)</label>

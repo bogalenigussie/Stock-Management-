@@ -1,6 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;400;500;600&display=swap');
 
 /*add product page formattting */
+
+/*add product page formattting */
 :root{
 --green:#0c5635b2;
 --blue:#1665ba;
@@ -39,8 +41,8 @@ margin-left: 5.8rem;
 }
 .reminder{
 font-size:smaller;
-margin-left:11rem; 
-font-style: italic;
+margin-left:10rem; 
+
 color:rgb(228, 79, 9);
 }
 
@@ -81,20 +83,33 @@ margin-left: 5rem;
 /*Product list page format*/
 #no-Product-To-Display{
    margin-left:2rem;
-   width:22%;
+   font-size:smaller;
+   width:20%;
    background: no-repeat;
    background-position: center;
-   height:23rem;
+   height:20rem;
    background-image: url("../images/no-product-information.png")
 }
+
+#warning-notice{
+
+ margin-left:2rem;
+   width:96%;
+   height:3.5rem;
+   margin-bottom: 2rem;
+}
+
 #delete-success-msg{
  margin-left:2rem;
    width:96%;
+   height:3.5rem;
+   margin-bottom: 2rem;
 }
 .delete-checkbox{
 float: left;
 margin-bottom: 7rem;
 }
+
 .card{
 margin-bottom: 2rem;
 }
