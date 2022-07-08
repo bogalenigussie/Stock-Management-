@@ -1,5 +1,5 @@
 # Stock-Management-web App
-A web-app developed with PHP and Javascript. Front end is biult with pure JS whereas PHP is used for the backend.no frameworks used. The web app has the interface for storing products information to database and display back the information in separate URL.
+A web-app developed with PHP and Javascript. Front end is built with pure JS whereas PHP is used for the backend.no frameworks used. The web app has the interface for storing products information to database and display back the information in separate URL.
 it is accesible by an URL containing two pages for: 
 1. Adding a product page and
 2. Product list page
